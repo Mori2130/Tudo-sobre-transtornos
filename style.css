@@ -64,10 +64,9 @@ section h2 {
 }
 
 .chatbot2 {
-  position: absolute;
-  left: 100px;
-  bottom: 600px;
-  right: 0;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
 }
 
 .card-container {
@@ -197,9 +196,7 @@ footer {
   }
 
   .chatbot2 {
-    position: static;
-    position: absolute;
-    top: 4910px;
+
     font-size: 10px;
   }
 
@@ -262,5 +259,4 @@ footer {
     padding: 10px;
     font-size: 14px;
   }
-
 }
