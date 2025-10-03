@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Psicologia</title>
+    <link rel="icon"
+        href="https://st3.depositphotos.com/8687680/16290/i/450/depositphotos_162901470-stock-illustration-modern-head-logo-sign-of.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+
+<body>
+    <header class="header">
+        <img class="logo" src="logo neurodivergente.png" alt="">
+        <h1>Transtornos</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">🔹Início</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="chatbot" id="chatbot">
+            <h2>🔹Fale com a Nina</h2>
+            <div class="chat-container">
+                <div class="chat-box" id="chat-box"></div>
+                <div class="chat-input">
+                    <input id="userInput" type="text" placeholder="Digite sua mensagem..." />
+                    <button onclick="sendMessage()">Enviar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Projeto Psicologia. Todos os direitos reservados.</p>
+    </footer>
+
+    <button class="help-btn" id="helpBtn" aria-label="Ajuda">Ajuda</button>
+
+    <div id="helpBox">
+        <h3>Como usar o Chatbot</h3>
+        <p>1. Digite sua mensagem no campo abaixo.<br>
+            2. Clique em <b>Enviar</b> ou pressione <b>Enter</b>.<br>
+            3. O assistente responderá automaticamente.<br>
+            4. Você pode perguntar sobre ansiedade, TDAH, depressão e mais.</p>
+        <button id="closeHelp">Fechar</button>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+        const input = document.getElementById("userInput");
+
+        function addMessage(text, sender) {
+            const message = document.createElement("div");
+            message.classList.add("message", sender);
+            message.innerHTML = text;
+            chatBox.appendChild(message);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function sendMessage() {
+            const userText = input.value.trim();
+            if (userText === "") return;
+
+            addMessage("Você: " + userText, "user");
+            input.value = "";
+
+            setTimeout(() => {
+                botReply(userText);
+            }, 500);
+        }
+        let userName = "";
+        function botReply(userText) {
+            let reply = "Não entendi. Pode repetir?";
+            const text = userText.toLowerCase();
+            if (!userName) {
+                if (text.includes("meu nome é")) {
+                    userName = userText.split(/meu nome é/i)[1].trim();
+                } else if (text.includes("me chamo")) {
+                    userName = userText.split(/me chamo/i)[1].trim();
+                } else if (text.includes("prazer meu nome é")) {
+                    userName = userText.split(/prazer meu nome é/i)[1].trim();
+                } else if (text.includes("meu nome")) {
+                    userName = userText.split(/meu nome/i)[1].trim();
+                } else if (text.includes("sou")) {
+                    userName = userText.split(/sou/i)[1].trim();
+                }
+
+                if (userName) {
+                    reply = `Prazer em te conhecer, ${userName}! 💛 Como você está hoje?`;
+                } else {
+                    reply = "Antes de continuarmos, qual é o seu nome?";
+                }
+
+                addMessage("Nina: " + reply, "bot");
+                return;
+            }
+
+            if (userText.toLowerCase().includes("Olá") || userText.toLowerCase().includes("olá")) {
+                reply = `Olá ${userName}! Que bom te ver por aqui 💛 Como você tá hoje?`;
+            } else if (userText.toLowerCase().includes("ansioso") || userText.toLowerCase().includes("ansiedade")) {
+                reply = `${userName}, tenta comigo esse exercício de respiração: grounding 5-4-3-2-1 (traz você pro presente): <br> 5 coisas que você vê <br> 4 coisas que pode tocar <br> 3 sons que pode ouvir <br> 2 cheiros <br> 1 gosto Respiração guiada.`;
+            } else if (userText.toLowerCase().includes("bem") || userText.toLowerCase().includes("alegre")) {
+                reply = `Que bom saber que você está bem, ${userName}! 💛 Estarei aqui pra te ajudar em qualquer coisa.`;
+            } else if (userText.toLowerCase().includes("triste") || userText.toLowerCase().includes("infeliz")) {
+                reply = `Sinto muito que você esteja se sentindo assim, ${userName}. Estou aqui pra te ajudar.`;
+            } else if (userText.toLowerCase().includes("deprimido") || userText.toLowerCase().includes("deprimido")) {
+                reply = `${userName}, eu sei que essa sensação de estar perdido, de querer voltar a ser quem você era, dói muito. E não é culpa sua... <br>Você não tá sozinho nisso, tá? Eu tô aqui pra te ouvir.`;
+            } else if (userText.toLowerCase().includes("tdah")) {
+                reply = `${userName}, olha, o TDAH (Transtorno de Déficit de Atenção e Hiperatividade) é um transtorno do neurodesenvolvimento, ou seja, nasce junto com a pessoa e afeta principalmente a forma como ela presta atenção, se organiza, controla impulsos e lida com o tempo.<br> <br>Sintomas mais comuns incluem: <br>Dificuldade de concentração por muito tempo; <br>Mente cheia, como se tivesse mil abas abertas; <br>Esquecimentos frequentes; <br>Começar várias coisas e não terminar; <br>Falar ou agir por impulso; <br>Sensação de estar sempre atrasado ou sobrecarregado. <br> <br>💡 Dicas pra lidar com o TDAH <br>Use listas curtas de tarefas (3 por vez, no máximo). <br>Divida o que for difícil em etapas pequenas. <br>Use alarmes e lembretes. <br>Tente descansar o corpo: sono e alimentação ajudam o foco. <br>E nunca se culpe — o cérebro só funciona de um jeito diferente, e tá tudo bem.`;
+            } else if (userText.toLowerCase().includes("o que seria") || userText.toLowerCase().includes("O que seria")) {
+                reply = `${userName}, condição psiquiátrica caracterizada pela dificuldade de concentração, hiperatividade e impulsividade excessiva – e que, no caso, persiste em adultos.   <br>Em geral, o TDAH começa na infância e pode persistir na vida adulta. Pode contribuir para baixa autoestima, relacionamentos problemáticos e dificuldade na escola ou no trabalho. <br>Além de impulsividade, excesso de agitação e déficit de atenção, o quadro pode gerar ansiedade e outros transtornos. <br>Geralmente, alia-se medicamentos e sessões de psicoterapia. Controlar possíveis transtornos associados também é importante e também muita dificuldade em manter o foco, esquecimentos frequentes, agitação física, fala excessiva e impulsividade, além de desorganização, dificuldade em completar tarefas e alterações de humor.`;
+            } else if (userText.toLowerCase().includes("autismo")) {
+                reply = `${userName}, o autismo é um transtorno do neurodesenvolvimento que afeta a comunicação e o comportamento. Cada pessoa com autismo é única, mas algumas características comuns incluem dificuldades na interação social, padrões de comportamento repetitivos e interesses restritos.<br> <br>💬 Frase de apoio<br> “O autismo não limita o que alguém pode ser. <br>Ele só muda o caminho que a pessoa faz pra chegar lá.” <br> <br>1 Como apoiar alguém autista: <br> Respeite o tempo e o jeito de cada um. <br>Evite julgar comportamentos — às vezes, o que parece “frieza” é apenas dificuldade de expressar emoção. <br>Use uma linguagem clara e direta. <br>Celebre as conquistas, mesmo as pequenas. <br><br>💙2. Como Ajudar <br>Seja paciente e respeite o tempo da pessoa; <br>Fale de forma clara e sem ironias; <br>Não julgue comportamentos — cada um tem seu jeito; <br>Valorize o que ela faz bem, e dê apoio quando for difícil. <br><br> 🌟 3. Características Comuns <br>Dificuldade com interações sociais; <br>Sensibilidade a barulhos, luzes ou toques; <br>Gosto por rotinas; <br>Foco intenso em assuntos que ama; <br>Pode se comunicar de forma diferente (fala pouco, ou muito sobre o que gosta).`;
+            } else if (userText.toLowerCase().includes("fala mais") || userText.toLowerCase().includes("Fala mais")) {
+                reply = "Uma pessoa com Transtorno do Espectro Autista (TEA) tem desafios na interação social e comunicação, e pode apresentar padrões de comportamento repetitivos e interesses restritos, além de sensibilidades sensoriais diversas. O autismo é um espectro, o que significa que não há um único modo de ser autista; cada pessoa é única, com suas próprias características e necessidade de apoio. Algumas pessoas autistas podem ter dificuldades para entender expressões faciais, linguagem corporal e nuances sociais, enquanto outras podem se comunicar verbalmente de forma eficaz. Compreender e respeitar essas diferenças é fundamental para promover inclusão e apoio adequado.";
+            } else if (userText.toLowerCase().includes("obrigado") || userText.toLowerCase().includes("valeu")) {
+                reply = `De nada, ${userName}! 💛 Estou sempre por aqui.`;
+            } else if (userText.toLowerCase().includes("qualquer coisa") || userText.toLowerCase().includes("Qualquer coisa")) {
+                reply = "Não hesite em perguntar sobre qualquer coisa, mas é pra perguntar, não é para fazer nenhuma gracinha, tá bom?";
+            }
+
+            addMessage("Nina: " + reply, "bot");
+        }
+
+        function sendGreeting() {
+            const now = new Date();
+            const hour = now.getHours();
+            let greeting = "";
+
+            if (hour >= 5 && hour < 12) {
+                greeting = "Bom dia ☀️";
+            } else if (hour >= 12 && hour < 18) {
+                greeting = "Boa tarde 🌤️";
+            } else {
+                greeting = "Boa noite 🌙";
+            }
+
+            const firstMessage = `${greeting}! Seja muito bem-vindo(a) 💛Meu nome é Nina, sua assistente virtual. Antes de começarmos, posso saber o seu nome?`;
+            addMessage("Nina: " + firstMessage, "bot");
+        }
+
+        window.addEventListener("load", sendGreeting);
+
+        input.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        const helpBtn = document.getElementById("helpBtn");
+        const helpBox = document.getElementById("helpBox");
+        const closeHelp = document.getElementById("closeHelp");
+
+        helpBtn.addEventListener("click", () => {
+            helpBox.style.display = "block";
+        });
+
+        closeHelp.addEventListener("click", () => {
+            helpBox.style.display = "none";
+        });
+    </script>
+</body>
+
+</html>
