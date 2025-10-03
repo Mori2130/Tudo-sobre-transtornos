@@ -199,7 +199,7 @@ footer {
   .chatbot2 {
     position: static;
     position: absolute;
-    top: 4900px;
+    top: 4910px;
     font-size: 10px;
   }
 
@@ -262,4 +262,5 @@ footer {
     padding: 10px;
     font-size: 14px;
   }
+
 }
