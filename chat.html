@@ -106,7 +106,7 @@
                 reply = `${userName}, tenta comigo esse exercício de respiração: grounding 5-4-3-2-1 (traz você pro presente): <br> 5 coisas que você vê <br> 4 coisas que pode tocar <br> 3 sons que pode ouvir <br> 2 cheiros <br> 1 gosto Respiração guiada.`;
             } else if (userText.toLowerCase().includes("bem") || userText.toLowerCase().includes("alegre")) {
                 reply = `Que bom saber que você está bem, ${userName}! 💛 Estarei aqui pra te ajudar em qualquer coisa.`;
-            } else if (userText.toLowerCase().includes("triste") || userText.toLowerCase().includes("infeliz")) {
+            } else if (userText.toLowerCase().includes("triste") || userText.toLowerCase().includes("infeliz") || userText.toLowerCase().includes("mal")) {
                 reply = `Sinto muito que você esteja se sentindo assim, ${userName}. Estou aqui pra te ajudar.`;
             } else if (userText.toLowerCase().includes("deprimido") || userText.toLowerCase().includes("deprimido")) {
                 reply = `${userName}, eu sei que essa sensação de estar perdido, de querer voltar a ser quem você era, dói muito. E não é culpa sua... <br>Você não tá sozinho nisso, tá? Eu tô aqui pra te ouvir.`;
@@ -169,3 +169,4 @@
 
 
 </html>
+
