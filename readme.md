@@ -37,3 +37,6 @@ HTML5 | CSS3 | JavaScript Vanilla
 
  Nota
 Projeto educativo. Não substitui atendimento profissional.
+
+Criador do código:
+Arthur Oliveira 🌟🐦‍🔥
